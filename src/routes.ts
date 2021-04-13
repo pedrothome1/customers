@@ -4,7 +4,6 @@ import joi from "joi";
 import JoiDate from "@joi/date";
 import cityController from "./controllers/CityController";
 import customerController from "./controllers/CustomerController";
-import moment from "moment";
 
 const Joi: joi.Root = CelebrateJoi.extend(JoiDate);
 
