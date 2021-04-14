@@ -25,7 +25,7 @@ class CustomerController {
     const city = await City.findOne({ id: request.body.cityId });
 
     if (!city) {
-      return response.status(422).json({
+      return response.status(400).json({
         message: "City does not exists"
       });
     }

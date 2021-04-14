@@ -1,11 +1,7 @@
-import "reflect-metadata";
-import express from "express";
-import cors from "cors";
 import { createConnection } from "typeorm";
 import { Customer } from "./models/Customer";
 import { City } from "./models/City";
-import routes from "./routes";
-import { errors } from "celebrate";
+import app from "./app";
 
 createConnection({
   type: "postgres",
@@ -17,13 +13,6 @@ createConnection({
   synchronize: true,
   entities: [Customer, City]
 }).then(() => {
-  const app = express();
-
-  app.use(cors());
-  app.use(express.json());
-  app.use(routes);
-  app.use(errors());
-
   app.listen(3333, () => {
     console.log("Listening on http://localhost:3333");
   });
