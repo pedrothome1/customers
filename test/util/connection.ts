@@ -18,12 +18,16 @@ const connection = {
 
   async clear() {
     const connection = getConnection();
+    await connection.query('PRAGMA foreign_keys=OFF');
+
     const entities = connection.entityMetadatas;
 
     entities.forEach(async (entity) => {
       const repository = connection.getRepository(entity.name);
       await repository.query(`DELETE FROM ${entity.tableName}`);
     });
+
+    await connection.query('PRAGMA foreign_keys=ON');
   },
 };
 
