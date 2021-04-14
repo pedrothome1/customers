@@ -27,7 +27,7 @@ describe("CustomerController", () => {
 
     expect(response.status).toBe(201);
     expect(response.body).toEqual(expect.objectContaining({
-      name: "Pedro",
+      name: "PEDRO",
       gender: "M",
       birthdate: expect.stringContaining("1999-11-10"),
       age: moment().diff(moment([1999, 11, 10]), "years")
@@ -81,7 +81,7 @@ describe("CustomerController", () => {
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual(expect.objectContaining({
-      name: "Henrique"
+      name: "HENRIQUE"
     }));
   });
 
@@ -132,7 +132,7 @@ describe("CustomerController", () => {
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual(expect.objectContaining({
-      name: "Pedro",
+      name: "PEDRO",
       gender: "M",
       birthdate: expect.stringContaining("1999-11-10"),
       age: moment().diff(moment([1999, 11, 10]), "years")
@@ -157,13 +157,13 @@ describe("CustomerController", () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual(expect.arrayContaining([
       expect.objectContaining({
-        name: "Pedro",
+        name: "PEDRO",
         gender: "M",
         birthdate: expect.stringContaining("1999-11-10"),
         age: moment().diff(moment([1999, 11, 10]), "years")
       }),
       expect.objectContaining({
-        name: "Pedro",
+        name: "PEDRO",
         gender: "M",
         birthdate: expect.stringContaining("1976-08-27"),
         age: moment().diff(moment([1976, 8, 27]), "years")

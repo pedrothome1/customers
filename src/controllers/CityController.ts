@@ -5,14 +5,14 @@ import { City } from "../models/City";
 
 class CityController {
   async getByState(request: Request, response: Response) {
-    const state = deburr(request.params.state.toUpperCase());
+    const state = request.params.state.trim().toUpperCase();
     const cities = await City.find({ state });
 
     return response.json(cities);
   }
 
   async getByName(request: Request, response: Response) {
-    const name = deburr((request.query.name as string).toUpperCase());
+    const name = deburr((request.query.name as string).trim().toUpperCase());
     const city = await City.findOne({ name });
 
     if (!city) {
@@ -26,8 +26,8 @@ class CityController {
 
   async store(request: Request, response: Response) {
     const city = new City();
-    city.name = deburr(request.body.name.toUpperCase());
-    city.state = deburr(request.body.state.toUpperCase());
+    city.name = deburr(request.body.name.trim().toUpperCase());
+    city.state = request.body.state.trim().toUpperCase();
 
     if (!states[city.state]) {
       return response.status(400).json({
