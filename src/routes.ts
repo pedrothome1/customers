@@ -65,7 +65,7 @@ routes.post(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      gender: Joi.string().required(),
+      gender: Joi.string().uppercase().allow("M", "F").required(),
       birthdate: Joi.date().format("YYYY-MM-DD").less("now").required(),
       cityId: Joi.number().required(),
     }

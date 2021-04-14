@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import deburr from "lodash/deburr";
+import states from "../constants/states";
 import { City } from "../models/City";
 
 class CityController {
@@ -27,6 +28,12 @@ class CityController {
     const city = new City();
     city.name = deburr(request.body.name.toUpperCase());
     city.state = deburr(request.body.state.toUpperCase());
+
+    if (!states[city.state]) {
+      return response.status(400).json({
+        message: "Invalid state"
+      });
+    }
 
     if (await City.findOne({ name: city.name, state: city.state })) {
       return response.status(400).json({
